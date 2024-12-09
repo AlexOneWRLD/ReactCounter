@@ -1,36 +1,69 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { ChangeEvent, useState } from 'react'
 import { Button } from '../button/Button'
+import s from './SetCount.module.css'
 
 
-export const SetCoutn = () => {
+type Props = {
+	maxValue:number
+	minValue:number
+	setMaxValueCount: (maxValue: number) => void
+	setMinValueCount: (minValue: number) => void
+}
+
+export const SetCoutn = ({ setMaxValueCount, setMinValueCount,maxValue,minValue }: Props) => {
 	
+	
+	const [max_Value, setMax_Value] = useState(maxValue)
+	const [min_Value, setMin_Value] = useState(minValue)
+	
+	
+	
+	const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		const MaxValue = e.currentTarget.value
+		setMax_Value(Number(MaxValue))
+		// setMaxValueCount(Number(MaxValue))
+	}
+	
+	const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		const MinValue = e.currentTarget.value
+		setMin_Value(Number(MinValue))
+		// setMinValueCount(Number(MinValue))
+	}
+	
+	const setAllValue = ()=>{
+	setMaxValueCount(max_Value)
+	setMinValueCount(min_Value)
+	}
 	
 	return (
-		<Wrapper>
-			<div>max value: <input type={'number'}/></div>
-			<div>start value: <input type={'number'}/></div>
-			<ButtonWrapper>
-				<Button title={'set'} onClick={()=>{}}/>
-			</ButtonWrapper>
-		</Wrapper>
+		<div className={s.wrapper}>
+			<div className={s.value_wrapper}>
+				<span className={s.span}>
+					max value:
+					<input
+						type={'number'}
+						value={max_Value}
+						className={s.input}
+						onChange={onChangeMaxHandler}
+					/>
+				</span>
+				<span className={s.span}>
+					start value:
+					<input
+						type={'number'}
+						value={min_Value}
+						className={s.input}
+						onChange={onChangeMinHandler}
+					/>
+				</span>
+			</div>
+			<div className={s.btn_wrapper}>
+				<Button
+					title={'set'}
+					onClick={setAllValue}
+					className={s.button} />
+			</div>
+		</div>
 	)
 }
 
-const Wrapper = styled.div`
-	width: 100%;
-	max-width: 200px;
-	height: 100%;
-  padding: 15px;
-  align-items: flex-start;
-	border: 3px solid #61dafb;
-	border-radius: 2px;
-`
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 15px;
-  border: 2px solid #61dafb;
-  border-radius: 2px;
-`

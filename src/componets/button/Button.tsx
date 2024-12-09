@@ -5,10 +5,10 @@ import styled from 'styled-components'
 type ButtonPropsType = {
 	title: string
 	onClick: () => void
-	style?: React.CSSProperties
+	className?:string
 }
 
-export const Button = ({ title, onClick, style }: ButtonPropsType) => {
+export const Button = ({ title, onClick,className }: ButtonPropsType) => {
 	
 	const onClickHandler = () => {
 		onClick()
@@ -16,7 +16,7 @@ export const Button = ({ title, onClick, style }: ButtonPropsType) => {
 	
 	
 	return (
-		<ButtonStyles onClick={onClickHandler} style={style}>{title}</ButtonStyles>
+		<ButtonStyles onClick={onClickHandler} className={className}>{title}</ButtonStyles>
 	)
 }
 

@@ -1,0 +1,23 @@
+.btn {
+	background-color: #61dafb;
+}
+
+.disable_btn {
+	opacity: 0.5;
+}
+
+.wrapper {
+	padding: 15px;
+  align-items: center;
+	border: 3px solid #61dafb;
+	border-radius: 2px;
+}
+
+.button_wrapper {
+	display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 2px solid #61dafb;
+  border-radius: 2px;
+	gap: 10px;
+}

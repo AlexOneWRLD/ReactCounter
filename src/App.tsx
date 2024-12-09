@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import styled from 'styled-components'
 import { Counter } from './componets/counter/Counter'
@@ -8,14 +8,50 @@ import { FlexWrapper } from './componets/styled-components/flexwrapper/FlexWrapp
 import { GlobalStyled } from './styles/Global.styles'
 
 function App() {
+	
+	const [maxValue, setMaxValue] = useState(5)
+	const [minValue, setMinValue] = useState(0)
+	const [table, setTable] = useState(minValue)
+	
+	const incCounter = () => {
+		if (table < maxValue) {
+			setTable(table + 1)
+		}
+	}
+	
+	const resetCounter = () => {
+		setTable(minValue)
+	}
+	
+	const setMaxValueCount = (maxValue: number) => {
+		setMaxValue(maxValue)
+		
+	}
+	
+	const setMinValueCount = (minValue: number) => {
+		setMinValue(minValue)
+		setTable(minValue)
+	}
+	
+	
 	return (
 		<div className='App'>
 			<GlobalStyled />
 			<Container>
 				<CenterComp>
 					<FlexWrapper gap={'20px'} justify={'center'}>
-						<SetCoutn />
-						<Counter />
+						<SetCoutn
+							maxValue={maxValue}
+							minValue={minValue}
+							setMaxValueCount={setMaxValueCount}
+							setMinValueCount={setMinValueCount}
+						/>
+						<Counter
+							table={table}
+							incCounter={incCounter}
+							resetCounter={resetCounter}
+							maxValue={maxValue}
+						/>
 					</FlexWrapper>
 				</CenterComp>
 			</Container>

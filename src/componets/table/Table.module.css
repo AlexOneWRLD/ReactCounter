@@ -1,0 +1,14 @@
+.table_styles {
+	margin: 0 auto 20px;
+	padding: 15px 30px;
+	height: 60px;
+	width: 140px;
+	color: #61dafb;
+	font-size: 30px;
+	border-radius: 10px;
+	border: 1px solid #61dafb;
+}
+
+.warning_num {
+	color: red;
+}
