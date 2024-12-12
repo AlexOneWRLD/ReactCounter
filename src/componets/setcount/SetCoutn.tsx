@@ -4,18 +4,17 @@ import s from './SetCount.module.css'
 
 
 type Props = {
-	maxValue:number
-	minValue:number
+	maxValue: number
+	minValue: number
 	setMaxValueCount: (maxValue: number) => void
 	setMinValueCount: (minValue: number) => void
 }
 
-export const SetCoutn = ({ setMaxValueCount, setMinValueCount,maxValue,minValue }: Props) => {
+export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValue }: Props) => {
 	
 	
 	const [max_Value, setMax_Value] = useState(maxValue)
 	const [min_Value, setMin_Value] = useState(minValue)
-	
 	
 	
 	const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,13 +25,15 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount,maxValue,minValue 
 	
 	const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		const MinValue = e.currentTarget.value
-		setMin_Value(Number(MinValue))
+			setMin_Value(Number(MinValue))
 		// setMinValueCount(Number(MinValue))
 	}
 	
-	const setAllValue = ()=>{
-	setMaxValueCount(max_Value)
-	setMinValueCount(min_Value)
+	const setAllValue = () => {
+		setMaxValueCount(max_Value)
+		setMinValueCount(min_Value)
+		localStorage.setItem('max_Value', JSON.stringify(max_Value))
+		localStorage.setItem('min_Value', JSON.stringify(min_Value))
 	}
 	
 	return (
@@ -52,7 +53,7 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount,maxValue,minValue 
 					<input
 						type={'number'}
 						value={min_Value}
-						className={s.input}
+						className={minValue <0 ? s.error_in : s.input}
 						onChange={onChangeMinHandler}
 					/>
 				</span>
@@ -61,7 +62,7 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount,maxValue,minValue 
 				<Button
 					title={'set'}
 					onClick={setAllValue}
-					className={s.button} />
+					className={minValue || maxValue > 0 ? s.button : s.error} />
 			</div>
 		</div>
 	)

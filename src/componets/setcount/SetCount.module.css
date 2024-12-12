@@ -17,7 +17,7 @@
 	border-radius: 2px;
 }
 
-.value_wrapper{
+.value_wrapper {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -37,4 +37,16 @@
 
 .button {
 	color: #000;
+}
+
+.error {
+	opacity: 0.5;
+	color: black;
+}
+
+.error_in{
+	border: 2px solid #61dafb;
+	background-color: red;
+	opacity: 0.5;
+	text-align: center;
 }
