@@ -45,8 +45,7 @@
 }
 
 .error_in{
-	border: 2px solid #61dafb;
-	background-color: red;
-	opacity: 0.5;
+	border: 1px solid #61dafb;
+	background-color: rgba(255, 135, 135, 0.5);
 	text-align: center;
 }

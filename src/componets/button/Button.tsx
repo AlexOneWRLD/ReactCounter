@@ -6,9 +6,10 @@ type ButtonPropsType = {
 	title: string
 	onClick: () => void
 	className?:string
+	disabled?:boolean
 }
 
-export const Button = ({ title, onClick,className }: ButtonPropsType) => {
+export const Button = ({ title, onClick,className,disabled }: ButtonPropsType) => {
 	
 	const onClickHandler = () => {
 		onClick()
@@ -16,7 +17,10 @@ export const Button = ({ title, onClick,className }: ButtonPropsType) => {
 	
 	
 	return (
-		<ButtonStyles onClick={onClickHandler} className={className}>{title}</ButtonStyles>
+		<ButtonStyles
+			onClick={onClickHandler}
+			className={className}
+			disabled={disabled}>{title}</ButtonStyles>
 	)
 }
 

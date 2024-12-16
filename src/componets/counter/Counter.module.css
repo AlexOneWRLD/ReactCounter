@@ -4,6 +4,7 @@
 
 .disable_btn {
 	opacity: 0.5;
+	cursor: auto;
 }
 
 .wrapper {

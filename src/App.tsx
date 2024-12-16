@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import styled from 'styled-components'
 import { Counter } from './componets/counter/Counter'
@@ -12,6 +12,39 @@ function App() {
 	const [maxValue, setMaxValue] = useState(5)
 	const [minValue, setMinValue] = useState(0)
 	const [table, setTable] = useState(minValue)
+	
+	
+	useEffect(()=>{
+		let ValueAsStringMax = localStorage.getItem('max_Value')
+		if (ValueAsStringMax){
+			let newValue = JSON.parse(ValueAsStringMax)
+			setMaxValue(newValue)
+		}
+	},[])
+	
+	useEffect(()=>{
+		let ValueAsStringMin = localStorage.getItem('min_Value')
+		if (ValueAsStringMin){
+			let newValue = JSON.parse(ValueAsStringMin)
+			setMinValue(newValue)
+			setTable(newValue)
+		}
+	},[])
+	
+	// useEffect(() => {
+	// 	return () => {
+	// 		localStorage.setItem('max_Value', JSON.stringify(maxValue))
+	// 	}
+	// }, [maxValue])
+	//
+	// 	useEffect(() => {
+	// 	return () => {
+	// 		localStorage.setItem('min_Value', JSON.stringify(minValue))
+	// 	}
+	// }, [minValue])
+	
+	
+	
 	
 	const incCounter = () => {
 		if (table < maxValue) {
@@ -51,6 +84,7 @@ function App() {
 							incCounter={incCounter}
 							resetCounter={resetCounter}
 							maxValue={maxValue}
+							minValue={minValue}
 						/>
 					</FlexWrapper>
 				</CenterComp>
