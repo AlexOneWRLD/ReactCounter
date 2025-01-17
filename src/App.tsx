@@ -12,39 +12,25 @@ function App() {
 	const [maxValue, setMaxValue] = useState(5)
 	const [minValue, setMinValue] = useState(0)
 	const [table, setTable] = useState(minValue)
+	const [valueTable, setValueTable] = useState<boolean>(false)
 	
 	
-	useEffect(()=>{
+	useEffect(() => {
 		let ValueAsStringMax = localStorage.getItem('max_Value')
-		if (ValueAsStringMax){
+		if (ValueAsStringMax) {
 			let newValue = JSON.parse(ValueAsStringMax)
 			setMaxValue(newValue)
 		}
-	},[])
+	}, [])
 	
-	useEffect(()=>{
+	useEffect(() => {
 		let ValueAsStringMin = localStorage.getItem('min_Value')
-		if (ValueAsStringMin){
+		if (ValueAsStringMin) {
 			let newValue = JSON.parse(ValueAsStringMin)
 			setMinValue(newValue)
 			setTable(newValue)
 		}
-	},[])
-	
-	// useEffect(() => {
-	// 	return () => {
-	// 		localStorage.setItem('max_Value', JSON.stringify(maxValue))
-	// 	}
-	// }, [maxValue])
-	//
-	// 	useEffect(() => {
-	// 	return () => {
-	// 		localStorage.setItem('min_Value', JSON.stringify(minValue))
-	// 	}
-	// }, [minValue])
-	
-	
-	
+	}, [])
 	
 	const incCounter = () => {
 		if (table < maxValue) {
@@ -58,7 +44,6 @@ function App() {
 	
 	const setMaxValueCount = (maxValue: number) => {
 		setMaxValue(maxValue)
-		
 	}
 	
 	const setMinValueCount = (minValue: number) => {
@@ -78,6 +63,7 @@ function App() {
 							minValue={minValue}
 							setMaxValueCount={setMaxValueCount}
 							setMinValueCount={setMinValueCount}
+							setValueTable={setValueTable}
 						/>
 						<Counter
 							table={table}
@@ -85,6 +71,7 @@ function App() {
 							resetCounter={resetCounter}
 							maxValue={maxValue}
 							minValue={minValue}
+							valueTable={valueTable}
 						/>
 					</FlexWrapper>
 				</CenterComp>

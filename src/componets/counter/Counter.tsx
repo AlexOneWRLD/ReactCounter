@@ -9,13 +9,14 @@ type Props = {
 	table: number
 	incCounter:()=>void
 	resetCounter:()=>void
+	valueTable:boolean
 }
 
-export const Counter = ({table,incCounter,maxValue,minValue,resetCounter}:Props) => {
+export const Counter = ({table,incCounter,maxValue,minValue,resetCounter,valueTable}:Props) => {
 	
 	return (
 		<div className={s.wrapper}>
-			<Table countNum={table} maxValue={maxValue} minValue={minValue} />
+			<Table countNum={table} maxValue={maxValue} minValue={minValue} valueTable={valueTable}/>
 			<div className={s.button_wrapper}>
 				<Button
 					title={'inc'}

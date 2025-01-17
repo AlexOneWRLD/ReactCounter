@@ -8,9 +8,10 @@ type Props = {
 	minValue: number
 	setMaxValueCount: (maxValue: number) => void
 	setMinValueCount: (minValue: number) => void
+	setValueTable: (el:boolean)=>void
 }
 
-export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValue }: Props) => {
+export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValue ,setValueTable}: Props) => {
 	
 	
 	const [max_Value, setMax_Value] = useState(maxValue)
@@ -20,12 +21,14 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValu
 		const MaxValue = e.currentTarget.value
 		setMax_Value(Number(MaxValue))
 		setMaxValueCount(Number(MaxValue))
+		setValueTable(false)
 	}
 	
 	const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		const MinValue = e.currentTarget.value
 		setMin_Value(Number(MinValue))
 		setMinValueCount(Number(MinValue))
+		setValueTable(false)
 	}
 	
 	const setAllValue = () => {
@@ -33,6 +36,7 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValu
 		setMinValueCount(min_Value)
 		localStorage.setItem('max_Value', JSON.stringify(max_Value))
 		localStorage.setItem('min_Value', JSON.stringify(min_Value))
+		setValueTable(true)
 	}
 	
 		useEffect(()=>{
@@ -50,6 +54,9 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValu
 			setMin_Value(newValue)
 		}
 	},[])
+	
+	const buttonClassName = minValue < 0 || maxValue < 0 || maxValue === minValue||maxValue<minValue
+	const buttonDisabled = maxValue === minValue || maxValue < 0|| minValue <0 || maxValue < minValue
 	
 	return (
 		<div className={s.wrapper}>
@@ -77,8 +84,8 @@ export const SetCoutn = ({ setMaxValueCount, setMinValueCount, maxValue, minValu
 				<Button
 					title={'set'}
 					onClick={setAllValue}
-					className={minValue <0 || maxValue <0 || maxValue === minValue||maxValue<minValue ? s.error : s.button }
-					disabled={maxValue === minValue || maxValue < 0|| minValue <0 || maxValue < minValue}
+					className={buttonClassName ? s.error : s.button }
+					disabled={buttonDisabled}
 				/>
 			</div>
 		</div>
